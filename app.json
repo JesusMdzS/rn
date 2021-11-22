@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "app-construcciones",
+    "slug": "app-construcciones",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "app-construcciones"
+}

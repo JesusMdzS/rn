@@ -2,11 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { View ,Text, StyleSheet,TextInput, TouchableOpacity, Alert} from 'react-native'
 
-
-
-export const LoginScreen = () => {
-
-   
+export const LoginScreen = () => {   
     const [state, setstate] = useState({
             email:'',
             password:''
@@ -16,28 +12,32 @@ export const LoginScreen = () => {
         setstate({
             ...state,
             [campo]: value,
-        });
-       
-        
+        });    
     }
-    const sendData = async()=>{
-        // await axios.post('https://reqres.in/api/login')
-        console.log("se envió la  info :"+ state.email+ "-y-"+ state.password);
+
+    const getData =()=>{
+        
         if(!state.email || !state.password){
+            console.log("llena tus datos");
             Alert.alert(
                 "Intenta de nuevo",
                 "Debes ingresar todos tus datos",
             )
         }else{
-            Alert.alert(
-                "Datos enviados",
-                "ahuevo papi",
-            )
-        }
-        
-        
+            
+            sendData();
+        }      
     }
-    
+
+    const sendData = async()=>{
+        // await axios.post('https://reqres.in/api/login')
+   
+       Alert.alert(
+        "Datos enviados",
+        "ahuevo papi",
+    )
+    console.log("se envió la  info :"+ state.email+ "-y-"+ state.password);
+    }
     return (
         <View style={style.container}>
             <View style={style.containerTwo}>
@@ -64,7 +64,7 @@ export const LoginScreen = () => {
                             <View>
                              <TouchableOpacity
                                 style={style.button}    
-                                onPress={sendData}
+                                onPress={getData}
                             >
                                 <Text style={{
                                     color:'white',

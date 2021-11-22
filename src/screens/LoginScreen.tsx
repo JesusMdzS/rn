@@ -34,7 +34,7 @@ export const LoginScreen = () => {
    
        Alert.alert(
         "Datos enviados",
-        "ahuevo papi",
+        "Se enviaron correctamente",
     )
     console.log("se envió la  info :"+ state.email+ "-y-"+ state.password);
     }

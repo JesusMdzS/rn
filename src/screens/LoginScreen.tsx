@@ -1,8 +1,15 @@
+import { useNavigation } from '@react-navigation/core'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { View ,Text, StyleSheet,TextInput, TouchableOpacity, Alert} from 'react-native'
 
+
+
 export const LoginScreen = () => {   
+
+    const navigation = useNavigation();
+
+
     const [state, setstate] = useState({
             email:'',
             password:''
@@ -30,12 +37,14 @@ export const LoginScreen = () => {
     }
 
     const sendData = async()=>{
+
+         navigation.navigate('MenuScreen');
         // await axios.post('https://reqres.in/api/login')
-   
-       Alert.alert(
-        "Datos enviados",
-        "Se enviaron correctamente",
-    )
+        
+    //    Alert.alert(
+    //     "Datos enviados",
+    //     "Se enviaron correctamente",
+    // )
     console.log("se envió la  info :"+ state.email+ "-y-"+ state.password);
     }
     return (
@@ -65,6 +74,7 @@ export const LoginScreen = () => {
                              <TouchableOpacity
                                 style={style.button}    
                                 onPress={getData}
+                               
                             >
                                 <Text style={{
                                     color:'white',

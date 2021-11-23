@@ -1,7 +1,7 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
 
@@ -74,7 +74,7 @@ export const MenuScreen = ({route}:Props) => {
             infraestructura</Text>
         </View>
          <View style={style.stadistic}>
-
+           <Text style={{fontSize:50}}>Estadisticas de obra en el mes y de empleados</Text>
         </View>
        
                 {userAccount()}
@@ -89,7 +89,7 @@ const style = StyleSheet.create({
     stadistic:{
         backgroundColor:'white',
         height:600,
-        width:'100%',
+        width:Dimensions.get("window").width,
         marginTop:5  
     },
     nose:{
@@ -110,7 +110,7 @@ const style = StyleSheet.create({
          alignItems: 'center'
     },
     text:{
-        fontSize:15,
+        fontSize:20,
         color:'white',
         textAlign:'center'
         

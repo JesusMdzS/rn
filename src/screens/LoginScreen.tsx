@@ -12,7 +12,7 @@ export const LoginScreen = () => {
 
     const [state, setstate] = useState({
             email:'',
-            password:''
+            password:'',
     })
 
     const onChange =(value:string, campo:string)=>{
@@ -37,23 +37,30 @@ export const LoginScreen = () => {
     }
 
     const sendData = async()=>{
-
-         navigation.navigate('MenuScreen');
+        //ESTO SIGUE EN PRUEBAS HASTA QUE LA API ESTE HECHA
+        //MANDO LA ID COMO UN PARAM PARA DETERMINAR UN ID DE ROL Y COMPROBAR FUNCIONALIDAD EN LA 
+        //SCREEN DE MENU
+         navigation.navigate('MenuScreen',{
+             id:state.password
+         });
         // await axios.post('https://reqres.in/api/login')
         
-    //    Alert.alert(
-    //     "Datos enviados",
-    //     "Se enviaron correctamente",
-    // )
+        //    Alert.alert(
+        //     "Datos enviados",
+        //     "Se enviaron correctamente",
+        // )
     console.log("se envió la  info :"+ state.email+ "-y-"+ state.password);
     }
+
+
+
     return (
         <View style={style.container}>
             <View style={style.containerTwo}>
+                <View style={style.chingadera}>
                 <View style={style.formContainer}>
                     <Text style={style.textCuenta}>Ingresa a tu cuenta</Text>
                         <View style={style.form}>
-                           
                              <TextInput 
                                 style={style.input}
                                 placeholder="Ingresa tu correo"
@@ -72,7 +79,7 @@ export const LoginScreen = () => {
                             ></TextInput>
                             <View>
                              <TouchableOpacity
-                                style={style.button}    
+                                style={style.buttonx}    
                                 onPress={getData}
                                
                             >
@@ -84,6 +91,7 @@ export const LoginScreen = () => {
                             </View>
                         </View>
                 </View>
+                </View>
             </View>
             
         </View>
@@ -92,19 +100,20 @@ export const LoginScreen = () => {
 
 const style = StyleSheet.create({
     container:{
-        flex:1,
+        height:'100%',
         backgroundColor:'white',
+        
     },
     containerTwo:{
-        flex:0.5,
+        height:'50%',
         backgroundColor:'#261361',
         justifyContent: 'center',
-         alignItems: 'center'
+         alignItems: 'center',
+   
     },
     formContainer:{
-        position:'absolute',
-        width:'80%',
-        top:'40%',
+        
+        width:259,
         height:360,
         borderRadius:20,
         backgroundColor :'white',
@@ -119,16 +128,20 @@ const style = StyleSheet.create({
         elevation: 6,
         
     },
+    chingadera:{
+        marginTop:'40%'
+    },
     textCuenta:{
         paddingTop:40,
         fontSize:25,
         fontWeight: "bold",
-        paddingLeft:'15%',
+        // paddingLeft:'15%',
+        textAlign:'center'
        
     },
     form:{
-        marginTop:20,
-    },
+        width:'100%'
+        },
     input:{
         
         height: 55,
@@ -140,7 +153,7 @@ const style = StyleSheet.create({
         fontSize:15,
         backgroundColor:'#EDEDED'
     },
-    button:{
+    buttonx:{
         marginLeft:'10%',
         marginTop:10,
         width:"80%",
@@ -150,5 +163,6 @@ const style = StyleSheet.create({
         backgroundColor: "#261361",
         padding: 10,
         borderRadius:10,
+        
     }
 })

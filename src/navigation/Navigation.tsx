@@ -10,11 +10,14 @@ export const Navigation=()=> {
   return (
    
       <Stack.Navigator >
-          <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          <Stack.Screen name="LoginScreen" component={LoginScreen}options={{
+            gestureEnabled:true,
+            title: 'Login'
+            
+            }} />
           <Stack.Screen  name="MenuScreen" component={MenuScreen}  options={{
-            
-            gestureEnabled:false
-            
+            gestureEnabled:false,
+            title: 'Quaxar'
             }} />
       </Stack.Navigator>
    

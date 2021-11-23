@@ -1,43 +1,62 @@
+import { StackScreenProps } from '@react-navigation/stack';
+import Icon from 'react-native-vector-icons/Ionicons';
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-
-export const MenuScreen = () => {
-     var id = 2;
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
 
+
+
+interface Props extends StackScreenProps<any,any>{};
+
+export const MenuScreen = ({route}:Props) => {
+     const id = 1;
+    const params = route.params;
     const userAccount=()=>{
-        if(id===1){
+    
+       
+        if(params.id==="1"){
             return(
                 <View style={style.bodyCards}>
-                    
                 <TouchableOpacity style={style.box}>
                     <View style={style.inner}>
+                    <Icon name="person" size={30} color="#8d8d8d" />
+                        <Text>Usuario</Text>
+                    </View>
+                </TouchableOpacity>    
+                <TouchableOpacity style={style.box}>
+                    <View style={style.inner}>
+                    <Icon name="people" size={30} color="#8d8d8d" />
                         <Text>Empleados</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity style={style.box}>
                     <View style={style.inner}>
+                    <Icon name="business" size={30} color="#8d8d8d" />
                         <Text>Obras/Proyectos</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity style={style.box}>
                     <View style={style.inner}>
+                    <Icon name="cart" size={30} color="#8d8d8d" />
                         <Text>Proveedores</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity style={style.box}>
                     <View style={style.inner}>
+                    <Icon name="cog" size={30} color="#8d8d8d" />
                         <Text>Herramienta/Maquinaria</Text>
                     </View>
                 </TouchableOpacity>
-               
                 </View>
+              
             )
-        }else if(id===2){
+        }else if(params.id==="2"){
             return(
                 <View style={style.bodyCards}>
                 <TouchableOpacity style={style.box}>
                 <View style={style.inner}>
+                <Icon name="cog" size={30} color="#8d8d8d" />
                     <Text>Herramienta/Maquinaria</Text>
                 </View>
                 </TouchableOpacity>
@@ -49,55 +68,64 @@ export const MenuScreen = () => {
 
 
     return (
-        <View style={style.container}>
-            <View style={style.headerButton}>
-                <TouchableOpacity style={style.Button}>
-                    <Text style={style.text}>Página principal </Text>
-                </TouchableOpacity>
-            </View>
-            {userAccount()}
-                                        
-           
+        <ScrollView  style={style.scrollView}  >
+          <View style={style.header}>
+             <Text style={style.text}>Enfocados en la construccion, operación, mantenimiento, financiamiento y promoción de 
+            infraestructura</Text>
         </View>
+         <View style={style.stadistic}>
+
+        </View>
+       
+                {userAccount()}
+ 
+         
+        </ScrollView  >
     )
 }
 
 
 const style = StyleSheet.create({
-    container:{
-        flex:1,
+    stadistic:{
         backgroundColor:'white',
+        height:600,
+        width:'100%',
+        marginTop:5  
     },
-    headerButton:{
-        height:'20%',
-        backgroundColor:'white',
+    nose:{
+        backgroundColor:'#261361',
+        height:300,
+        width:300,
+        marginTop:5  
+    },
+    scrollView:{
+        
+        backgroundColor:'#261361',
+        flex:5
+    },
+    header:{
+        height:100,
+        backgroundColor:'#261361',
         justifyContent: 'center',
          alignItems: 'center'
     },
-    Button:{
-        padding: 10,
-        borderRadius:10,
-        width:"80%",
-        height:50,
-        backgroundColor:'#261361',
-        alignItems:'center'
-    },
     text:{
-        fontSize:25,
-        color:'white'
+        fontSize:15,
+        color:'white',
+        textAlign:'center'
+        
     },
+ 
     bodyCards:{
-        height:'80%',
+        height:500,
         backgroundColor:'#261361',
         flexDirection:'row',
         flexWrap:'wrap',
-        justifyContent: 'center',
-        alignItems: 'center',
         padding:5
     },
     box:{
         width:'50%',
-        height:'33%',
+        height:150,
         padding:5,
      
     },

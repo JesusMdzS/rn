@@ -3,8 +3,8 @@ import axios from 'axios';
 
 export const useUsuarios = () => {
 
-    const [usuarios, setusuarios] = useState();
-    const url = 'https://reqres.in/api/users?page=2';
+    const [usuarios, setusuarios] = useState([]);
+    const url = 'https://reqres.in/api/users?per_page=12';
 
     const loadUsuarios =async()=>{
      await axios.get(url)
@@ -22,7 +22,4 @@ export const useUsuarios = () => {
     return{
       usuarios
     }
-
-
-
 }

@@ -2,7 +2,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import {  ScrollView } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/core';
 
 
 
@@ -10,6 +11,10 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler';
 interface Props extends StackScreenProps<any,any>{};
 
 export const MenuScreen = ({route}:Props) => {
+
+    const navigation = useNavigation();
+
+
      const id = 1;
     const params = route.params;
     const userAccount=()=>{
@@ -18,7 +23,9 @@ export const MenuScreen = ({route}:Props) => {
         if(params.id==="1"){
             return(
                 <View style={style.bodyCards}>
-                <TouchableOpacity style={style.box}>
+                <TouchableOpacity style={style.box}
+                 onPress={() => navigation.navigate('ListUsersScreen')}
+                 >
                     <View style={style.inner}>
                     <Icon name="person" size={30} color="#8d8d8d" />
                         <Text>Usuario</Text>

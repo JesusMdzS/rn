@@ -18,8 +18,10 @@ export const ListUsersScreen = () => {
   // console.log(usuarios.map());
 
   const Edit = (id) => {
-    Alert.alert("Accion de editar elemento", "editado con la id: " + id);
     console.log("editado con id: " + id);
+    navigation.navigate("userUpdateForm", {
+      idpersona: id,
+    });
   };
 
   const Delete = (id) => {

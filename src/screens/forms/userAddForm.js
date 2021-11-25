@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
-export const userAddForm = () => {
+export const userAddForm = ({ navigation: { goBack } }) => {
   const [agregar, setagregar] = useState({
     nombre: "",
     apellidoPaterno: "",
@@ -46,7 +46,14 @@ export const userAddForm = () => {
   };
 
   const sendData = async () => {
-    Alert.alert("Usuario agregado", "los datos han sido registrados");
+    Alert.alert("Usuario agregado", "los datos han sido registrados", [
+      {
+        text: "Ok",
+        onPress: () => goBack(),
+        style: "Ok",
+      },
+    ]);
+
     //aqui  va el llamado a la api para añadir info
     console.log("nombre :" + agregar.nombre);
     console.log("apellido P :" + agregar.apellidoPaterno);

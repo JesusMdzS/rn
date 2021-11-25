@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 
-export const MenuScreen = (route) => {
+export const MenuScreen = ({ route }) => {
   const id = 1;
   const params = route.params;
   const userAccount = () => {

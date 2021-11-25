@@ -46,7 +46,7 @@ export const userAddForm = () => {
   };
 
   const sendData = async () => {
-    Alert.alert("Agregado", "los datos han sido registrados");
+    Alert.alert("Usuario agregado", "los datos han sido registrados");
     //aqui  va el llamado a la api para añadir info
     console.log("nombre :" + agregar.nombre);
     console.log("apellido P :" + agregar.apellidoPaterno);
@@ -133,6 +133,15 @@ const style = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     marginTop: 20,
+    shadowColor: "white",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
   input: {
     height: 55,

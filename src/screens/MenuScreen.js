@@ -13,7 +13,6 @@ import { useNavigation } from "@react-navigation/core";
 export const MenuScreen = ({ route }) => {
   const navigation = useNavigation();
 
-  const id = 1;
   const params = route.params;
   const userAccount = () => {
     if (params.id === "1") {

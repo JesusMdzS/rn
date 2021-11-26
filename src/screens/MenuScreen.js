@@ -7,24 +7,22 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from "react-native-chart-kit";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import { LineChart } from "react-native-chart-kit";
+import { ScrollView } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/core";
 
 export const MenuScreen = ({ route }) => {
-  const id = 1;
+  const navigation = useNavigation();
+
   const params = route.params;
   const userAccount = () => {
     if (params.id === "1") {
       return (
         <View style={style.bodyCards}>
-          <TouchableOpacity style={style.box}>
+          <TouchableOpacity
+            style={style.box}
+            onPress={() => navigation.navigate("ListUsersScreen")}
+          >
             <View style={style.inner}>
               <Icon name="person" size={30} color="#8d8d8d" />
               <Text>Usuario</Text>

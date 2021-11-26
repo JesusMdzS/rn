@@ -90,7 +90,7 @@ export const MenuScreen = ({ route }) => {
       </Text>
       <LineChart
         data={{
-          labels: ["January", "February", "March", "April", "May", "June"],
+          labels: ["week 1", "week 2", "week 3", "week 4"],
           datasets: [
             {
               data: [
@@ -105,7 +105,7 @@ export const MenuScreen = ({ route }) => {
           ],
         }}
         width={Dimensions.get("window").width} // from react-native
-        height={220}
+        height={240}
         yAxisLabel="$"
         yAxisSuffix="k"
         yAxisInterval={1} // optional, defaults to 1
@@ -158,7 +158,7 @@ export const MenuScreen = ({ route }) => {
           ],
         }}
         width={Dimensions.get("window").width} // from react-native
-        height={220}
+        height={240}
         yAxisLabel="$"
         yAxisSuffix="k"
         yAxisInterval={1} // optional, defaults to 1

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { useUsuarios } from "../hooks/useUsuarios";
@@ -7,30 +7,34 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/core";
 
 export const ListUsersScreen = () => {
-  const url = "http://192.168.100.6/API/users.php?delete=";
   const navigation = useNavigation();
-  const { usuarios } = useUsuarios();
-  // console.log(usuarios.map());
+
+  const [data, setData] = useState([]);
+
+  const url = "http://192.168.100.6/API/users.php";
+
+  const getUser = async () => {
+    await axios.get(url).then((res) => {
+      console.log(res.data);
+      setData(res.data);
+    });
+  };
 
   const Edit = (id) => {
-    console.log("editado con id: " + id);
     navigation.navigate("userUpdateForm", {
       idpersona: id,
     });
   };
 
-  const Delete = async (id) => {
-    await axios
-      .delete(url + id)
-      .then(() => {})
-      .catch((e) => {
-        console.log(e);
-      });
+  const deleteUser = async (id) => {
+    await axios.delete(url + "?delete=" + id).then((res) => {
+      getUser();
+    });
   };
 
-  const listItems = usuarios.map((persona, key) => {
+  const listItems = data.map((persona) => {
     return (
-      <View key={key} style={style.container}>
+      <View key={persona.id} style={style.container}>
         <Text style={style.text}>ID: {persona.id}</Text>
         <Text style={style.text}>
           Nombre: {persona.nombre} {persona.apellidoPaterno}{" "}
@@ -47,7 +51,7 @@ export const ListUsersScreen = () => {
           </TouchableOpacity>
           <TouchableOpacity
             style={style.delete}
-            onPress={() => Delete(persona.id)}
+            onPress={() => deleteUser(persona.id)}
           >
             <Icon name="trash" size={30} color="#FFFFFF" />
           </TouchableOpacity>
@@ -55,6 +59,10 @@ export const ListUsersScreen = () => {
       </View>
     );
   });
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <ScrollView style={style.scrollView} showsVerticalScrollIndicator={false}>

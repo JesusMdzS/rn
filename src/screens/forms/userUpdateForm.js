@@ -14,7 +14,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 
 export const userUpdateForm = ({ route }) => {
-  const url = "http://192.168.100.6/API/users.php?";
+  const url = "http://192.168.100.6/API/users.php";
   // const url = "https://reqres.in/api/users?id=";
   const params = route.params;
 
@@ -76,6 +76,7 @@ export const userUpdateForm = ({ route }) => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={style.container}
     >
+      <Text style={{ color: "white" }}>{params.idpersona}</Text>
       <ScrollView>
         <View style={style.form}>
           <TextInput

@@ -32,6 +32,7 @@ export const ListUsersScreen = () => {
     await axios.post(url + "?id=" + id, formData).then((res) => {
       console.log(res.data);
       getUser();
+      Alert.alert("Usuario eliminado exitosamente");
     });
   };
 

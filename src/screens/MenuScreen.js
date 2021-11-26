@@ -78,7 +78,16 @@ export const MenuScreen = ({ route }) => {
           y promoción de infraestructura
         </Text>
       </View>
-      <Text style={{ fontSize: 25, color: "white" }}>Obras en el mes</Text>
+      <Text
+        style={{
+          fontSize: 25,
+          color: "white",
+          textAlign: "center",
+          fontWeight: "bold",
+        }}
+      >
+        Obras en el mes
+      </Text>
       <LineChart
         data={{
           labels: ["January", "February", "March", "April", "May", "June"],
@@ -122,7 +131,16 @@ export const MenuScreen = ({ route }) => {
           borderRadius: 16,
         }}
       />
-
+      <Text
+        style={{
+          fontSize: 25,
+          color: "white",
+          textAlign: "center",
+          fontWeight: "bold",
+        }}
+      >
+        Historico de empleados
+      </Text>
       <LineChart
         data={{
           labels: ["January", "February", "March", "April", "May", "June"],

@@ -11,12 +11,12 @@ export const ListUsersScreen = () => {
 
   const [data, setData] = useState([]);
 
-  const url = "http://192.168.100.6/API/users.php";
+  const url = "http://listadetandas.herokuapp.com/api/";
 
   const getUser = async () => {
     await axios.get(url).then((res) => {
-      console.log(res.data);
-      setData(res.data);
+      // console.log(res.data.data);
+      setData(res.data.data);
     });
   };
 
@@ -27,7 +27,10 @@ export const ListUsersScreen = () => {
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(url + "?delete=" + id).then((res) => {
+    let formData = new FormData();
+    formData.append("METHOD", "DELETE");
+    await axios.post(url + "?id=" + id, formData).then((res) => {
+      console.log(res.data);
       getUser();
     });
   };

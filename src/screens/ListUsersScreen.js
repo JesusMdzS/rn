@@ -1,18 +1,13 @@
-import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import React, { useEffect } from "react";
+import axios from "axios";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { useUsuarios } from "../hooks/useUsuarios";
 import { ScrollView } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/core";
 
 export const ListUsersScreen = () => {
+  const url = "http://192.168.100.6/API/users.php?delete=";
   const navigation = useNavigation();
   const { usuarios } = useUsuarios();
   // console.log(usuarios.map());
@@ -24,15 +19,13 @@ export const ListUsersScreen = () => {
     });
   };
 
-  const Delete = (id) => {
-    Alert.alert("Accion de borrar elemento", "borrado con la id: " + id, [
-      {
-        text: "Cancel",
-        onPress: () => console.log("cancelado"),
-        style: "cancel",
-      },
-      { text: "OK", onPress: () => console.log("borrado con id: " + id) },
-    ]);
+  const Delete = async (id) => {
+    await axios
+      .delete(url + id)
+      .then(() => {})
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   const listItems = usuarios.map((persona, key) => {

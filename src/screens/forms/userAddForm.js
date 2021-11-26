@@ -11,8 +11,10 @@ import {
   Alert,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/core";
 
-export const userAddForm = ({ navigation: { goBack } }) => {
+export const userAddForm = () => {
+  const navigation = useNavigation();
   const url = "http://192.168.100.6/API/users.php";
   const [agregar, setagregar] = useState({
     nombre: "",
@@ -55,7 +57,7 @@ export const userAddForm = ({ navigation: { goBack } }) => {
         Alert.alert("Usuario agregado", "los datos han sido registrados", [
           {
             text: "Ok",
-            onPress: () => goBack(),
+            onPress: () => navigation.navigate("ListUsersScreen"),
             style: "Ok",
           },
         ]);

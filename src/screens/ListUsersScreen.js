@@ -40,10 +40,11 @@ export const ListUsersScreen = () => {
       <View key={key} style={style.container}>
         <Text style={style.text}>ID: {persona.id}</Text>
         <Text style={style.text}>
-          Nombre: {persona.first_name} {persona.last_name}
+          Nombre: {persona.nombre} {persona.apellidoPaterno}{" "}
+          {persona.apellidoMaterno}
         </Text>
         <Text style={style.text}>Email: {persona.email}</Text>
-        <Text style={style.text}>Contraseña: {persona.avatar}</Text>
+        <Text style={style.text}>Contraseña: {persona.password}</Text>
         <Text style={style.text}>Tipo de usuario: {persona.id}</Text>
         <Text style={style.text}>Creación: 09/03/20</Text>
         <Text style={style.text}>Modificación: 10/05/21</Text>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 import {
   View,
   Text,
@@ -13,6 +13,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 
 export const userAddForm = ({ navigation: { goBack } }) => {
+  const url = "http://192.168.100.6/API/users.php";
   const [agregar, setagregar] = useState({
     nombre: "",
     apellidoPaterno: "",
@@ -46,13 +47,19 @@ export const userAddForm = ({ navigation: { goBack } }) => {
   };
 
   const sendData = async () => {
-    Alert.alert("Usuario agregado", "los datos han sido registrados", [
-      {
-        text: "Ok",
-        onPress: () => goBack(),
-        style: "Ok",
-      },
-    ]);
+    await axios
+      .post(url + "?insert=1", {
+        body: JSON.stringify(agregar),
+      })
+      .then((res) => {
+        Alert.alert("Usuario agregado", "los datos han sido registrados", [
+          {
+            text: "Ok",
+            onPress: () => goBack(),
+            style: "Ok",
+          },
+        ]);
+      });
 
     //aqui  va el llamado a la api para añadir info
     console.log("nombre :" + agregar.nombre);

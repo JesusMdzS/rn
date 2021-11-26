@@ -14,22 +14,22 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 
 export const userUpdateForm = ({ route }) => {
-  const url = "https://reqres.in/api/users?per_page=12";
+  const url = "http://192.168.100.6/API/users.php";
+  // const url = "https://reqres.in/api/users?id=";
   const params = route.params;
 
   const [agregar, setagregar] = useState({
-    first_name: "",
-    apellidoPaterno: "",
     apellidoMaterno: "",
+    apellidoPaterno: "",
     email: "",
+    nombre: "",
     password: "",
     usuarioTipo: "",
   });
 
   const consultar = async () => {
-    await axios.get(url + "&id=" + params.idpersona).then((res) => {
-      console.log(res.data.data);
-      setagregar(res.data.data);
+    await axios.get(url + "?get=" + params.idpersona).then((res) => {
+      setagregar(res.data[0]);
     });
   };
 
@@ -41,24 +41,25 @@ export const userUpdateForm = ({ route }) => {
   };
 
   const getData = () => {
-    // if (
-    //   !agregar.nombre ||
-    //   !agregar.apellidoPaterno ||
-    //   !agregar.apellidoMaterno ||
-    //   !agregar.email ||
-    //   !agregar.password ||
-    //   !agregar.usuarioTipo
-    // ) {
-    //   console.log("llena tus datos");
-    //   Alert.alert("Intenta de nuevo", "Debes ingresar todos los datos");
-    // } else {
-    sendData();
+    if (
+      !agregar.nombre ||
+      !agregar.apellidoPaterno ||
+      !agregar.apellidoMaterno ||
+      !agregar.email ||
+      !agregar.password ||
+      !agregar.usuarioTipo
+    ) {
+      console.log("llena tus datos");
+      Alert.alert("Intenta de nuevo", "Debes ingresar todos los datos");
+    } else {
+      sendData();
+    }
   };
 
   const sendData = async () => {
     Alert.alert("Usuario agregado", "los datos han sido registrados");
     //aqui  va el llamado a la api para añadir info
-    console.log("nombre :" + agregar.first_name);
+    console.log("nombre :" + agregar.nombre);
     console.log("apellido P :" + agregar.apellidoPaterno);
     console.log("apellido P :" + agregar.apellidoMaterno);
     console.log("email :" + agregar.email);
@@ -76,13 +77,12 @@ export const userUpdateForm = ({ route }) => {
       style={style.container}
     >
       <ScrollView>
-        <Text style={{ color: "white" }}>{params.idpersona}</Text>
         <View style={style.form}>
           <TextInput
             style={style.input}
             placeholder="Edita tu nombre"
-            value={agregar.first_name}
-            onChangeText={(e) => onChange(e, "first_name")}
+            value={agregar.nombre}
+            onChangeText={(e) => onChange(e, "nombre")}
           ></TextInput>
           <TextInput
             style={style.input}
